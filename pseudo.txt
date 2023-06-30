@@ -1,0 +1,2 @@
+open ai api_key
+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

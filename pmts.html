@@ -1,0 +1,94 @@
+<head>
+    <link rel="stylesheet" href="web-payments-quickstart-main\public\app.css" preload>
+    <script src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+  </head>
+  <body>
+  <div id="payment-form">
+    <div id="payment-status-container"></div>
+    <div id="card-container"></div>
+    <button id="card-button" type="button">Pay</button>
+  </div>
+  <script type="module">
+    const payments = Square.payments('sandbox-sq0idb-RT3u-HhCpNdbMiGg5aXuVg', 'TC4Z3ZEBKRXRH');
+    const card = await payments.card();
+    await card.attach('#card-container');
+  
+    const cardButton = document.getElementById('card-button');
+    cardButton.addEventListener('click', async () => {
+      const statusContainer = document.getElementById('payment-status-container');
+  
+      try {
+        const result = await card.tokenize();
+        if (result.status === 'OK') {
+          console.log(`Payment token is ${result.token}`);
+          statusContainer.innerHTML = "Payment Token Generated";
+  
+          // Calculate the total amount dynamically
+          const calculatedTotal = calculateTotal();
+  
+          // Process the transaction
+          const transactionResult = await processTransaction(result.token, calculatedTotal);
+          if (transactionResult.success) {
+            statusContainer.innerHTML = "Payment Successful";
+            console.log("Transaction processed successfully.");
+          } else {
+            statusContainer.innerHTML = "Payment Failed";
+            console.error("Transaction failed:", transactionResult.error);
+          }
+        } else {
+          let errorMessage = `Tokenization failed with status: ${result.status}`;
+          if (result.errors) {
+            errorMessage += ` and errors: ${JSON.stringify(result.errors)}`;
+          }
+  
+          throw new Error(errorMessage);
+        }
+      } catch (e) {
+        console.error(e);
+        statusContainer.innerHTML = "Payment Failed";
+      }
+    });
+  
+    async function processTransaction(paymentToken, amount) {
+      // Send the payment token and transaction details to your server for processing
+      // On the server side, you can use Square's API to create a payment or process the transaction
+  
+      // Example implementation:
+      try {
+        const response = await fetch('/your-server-endpoint', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            paymentToken: paymentToken,
+            amount: amount,
+            currency: 'USD'
+          })
+        });
+  
+        if (response.ok) {
+          return { success: true };
+        } else {
+          const errorResponse = await response.json();
+          return { success: false, error: errorResponse.error };
+        }
+      } catch (error) {
+        console.error("Transaction processing error:", error);
+        return { success: false, error: "Transaction processing error" };
+      }
+    }
+  
+    function calculateTotal() {
+      // Perform your calculations to determine the total amount
+      // Return the calculated total
+      const quantity = 3;
+      const pricePerItem = 13.33;
+      const total = quantity * pricePerItem;
+      return total;
+    }
+  </script>
+  
+    <script src="bot.js"></script>
+  </body>
+  
