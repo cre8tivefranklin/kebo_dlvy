@@ -1,6 +1,5 @@
-.parent-bg {
+.parent-bg{
     position: absolute;
-    padding: 20vw;
     top: 0;
     left: 0;
     width: 100%;
@@ -26,12 +25,13 @@
 
 .container-1 {
     z-index: 1;
-    margin: 5%;
+    left: 20px;
+    margin: 50px;
     color: white;
-    padding: 2%;
-    border-radius: 1vw;
+    padding: 20px;
+    border-radius: 10px;
     font-family: 'Roboto';
-    font-size: 3vw;
+    font-size: 30px;
     background-color: rgb(102, 142, 142);
     cursor: pointer;
     position: relative;
@@ -39,13 +39,11 @@
 
 .container-1 ul {
     list-style: none;
-    margin: 0;
-    padding: 0;
 }
 
 .container-1 ul li {
-    margin: 2%;
-    padding: 0.5%;
+    margin: 20px;
+    padding: 5px;
 }
 
 .container-1 ul li:hover {
@@ -55,16 +53,15 @@
 
 .container-2 {
     z-index: 2;
-    position: absolute;
-    width: 90%;
-    left: 5%;
     top: 10%;
-    margin: 2% 0;
+    position: absolute;
+    width: 75%;
+    margin: 20px 100px;
     color: white;
-    padding: 2%;
-    border-radius: 1vw;
+    padding: 20px;
+    border-radius: 10px;
     font-family: 'Roboto';
-    font-size: 3vw;
+    font-size: 30px;
     background-color: rgb(127, 176, 176);
     cursor: pointer;
 }
@@ -82,42 +79,28 @@
 }
 
 .items-container {
-    padding: 2%;
+    padding: 20px;
 }
 
 .cart_win {
+    position: absolute;
+    bottom: 20%;
+    left: 20%;
     color: white;
-    margin: 5%;
-    padding: 2%;
-    border-radius: 1vw;
+    margin: 100px;
+    padding: 20px;
+    border-radius: 10px;
     font-family: 'Roboto';
-    font-size: 3vw;
+    font-size: 30px;
     background-color: rgb(102, 142, 142);
     overflow: auto;
     height: 30vh;
 }
 
 ::-webkit-scrollbar {
-    width: 1vw;
+    width: 10px;
 }
 
 .hide_cart {
     display: none;
 }
-
-/* Media Queries */
-@media screen and (max-width: 768px) {
-    /* Adjustments for smaller screens */
-    .parent-bg {
-        padding: 10vw;
-    }
-  
-    .container-1,
-    .container-2,
-    .cart_win {
-        font-size: 5vw;
-        margin: 5%;
-        padding: 5%;
-    }
-}
-

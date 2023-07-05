@@ -14,21 +14,23 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<style>
 		.material-symbols-outlined {
-		  font-variation-settings:
-		  'FILL' 0,
-		  'wght' 400,
-		  'GRAD' 0,
-		  'opsz' 48
+			font-variation-settings:
+			'FILL' 0,
+			'wght' 400,
+			'GRAD' 0,
+			'opsz' 48;
 		}
 	</style>
+	
 	<style>
-		body{
-			background-color:  rgba(80, 112, 112, 0.089);
+		body {
+			background-color: rgba(80, 112, 112, 0.089);
 		}
-		.container-order{
+	
+		.container-order {
 			position: absolute;
-			top:20px;
-			left: 20px;
+			top: 2%;
+			left: 2%;
 			color: white;
 			padding: 20px;
 			border-radius: 50px;
@@ -37,10 +39,11 @@
 			background-color: rgb(80, 112, 112);
 			cursor: pointer;
 		}
-		.cart{
+	
+		.cart {
 			position: absolute;
-			bottom: 20px;
-			left: 20px;
+			bottom: 2%;
+			left: 2%;
 			color: white;
 			padding: 20px;
 			border-radius: 50px;
@@ -49,10 +52,26 @@
 			background-color: rgb(80, 112, 112);
 			cursor: pointer;
 		}
-		.container-order:hover, .cart:hover{
+	
+		.container-order:hover,
+		.cart:hover {
 			background-color: rgba(80, 112, 112, 0.517);
 			color: rgb(255, 255, 255);
 		}
+	
+		/* Media Queries */
+		@media screen and (max-width: 750px) {
+			.container-order,
+			.cart {
+				padding: 30px;
+				font-size: 40px;
+				border-radius: 50px;
+			}
+		}
+	</style>
+	
+
+
 	</style>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
