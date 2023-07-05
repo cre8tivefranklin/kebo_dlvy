@@ -1,3 +1,62 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,17 +121,19 @@
 
     <div class="container-1 hide-r" id="order-items-r">
 		<!-- open R_nth objects -->
-		<div id="restaurant" onclick="open_menu()">R1</div>
+		<!-- <div id="restaurant" onclick="open_menu()">R1</div> -->
     </div>
 
 	<div class="container-2 hide-m" id="Menus">
-		 <div onclick="show_items()">Menu(R1)</div>
+
+		 <!-- <div onclick="show_items()">Menu</div>
 		 <div class="items-container hide-i" id="M1_items">
 			<p>Items:</p><br>
 			<ul>
 				<li class="" id=""></li>
 			</ul>
-		 </div>
+		 </div> -->
+
 	</div>
 	
 
@@ -145,3 +206,130 @@
 	<script src="js/main_function.js"></script>
 </body>
 </html>
+
+.container-order{
+    z-index: -1;
+}
+.container-1{
+    z-index: 1;
+    /* display: none; */
+    /* position: absolute; */
+    /* top:40px; */
+    left: 20px;
+    margin: 75px;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Roboto';
+    font-size: 32px;
+    background-color: rgb(102, 142, 142);
+    cursor: pointer;
+}
+.container-1 ul{
+    list-style: none;
+}
+.container-1 ul li{
+    margin: 20px;
+    padding: 5px;
+}
+.container-1 ul li:hover{
+    background-color: rgba(80, 112, 112, 0.517);
+    color: rgb(255, 255, 255);
+}
+.container-2{
+    z-index: 2;
+    /* display: none; */
+    /* position: absolute; */
+    /* top:40px; */
+    left: 20px;
+    margin: 100px;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Roboto';
+    font-size: 32px;
+    background-color: rgb(102, 142, 142);
+    cursor: pointer;
+}
+
+.hide-r{
+    display: none;
+}
+.hide-m{
+    display: none;
+}
+.hide-i{
+    display: none;
+}
+.items-container{
+    padding: 20px;
+}
+
+.cart_win{
+    color: white;
+    margin: 100px;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Roboto';
+    font-size: 32px;
+    background-color: rgb(102, 142, 142);
+    overflow: auto;
+    /* width: 100%; */
+    height: 500px;
+}
+::-webkit-scrollbar{
+    width: 1px;
+}
+.hide_cart{
+    display: none;
+}
+
+
+
+// Pseudocode for handling the click event and toggling the visibility of order items
+
+// Get references to the order button and order items
+
+//ordering functions
+function open_restuarant(){
+    var open_items = document.getElementById('order-items-r');
+    open_items.classList.toggle('hide-r');
+
+    ////////////replicate this formula
+    var restaurants_list = ["R1","R2","R3"];//create list of restaurants
+    var restaurants_all = restaurants_list.length;//creates list length
+    var restaurants = [];//list where restaurant names are pushed into for loop iteration
+    var list_restaurants = '';
+    for (var index_r = 0; index_r < restaurants_all; index_r++) {
+        restaurants[index_r] = restaurants_list[index_r];//assigns display value from list
+        list_restaurants+= '<li>' + restaurants[index_r] + '</li>';//assigns list item contiuously
+    }
+    open_items.innerHTML = '<div id="restaurant" onclick="open_menu()"><ul>' + list_restaurants + '</ul></div>';//MENU OPENS HERE
+    ////////////replic this formula
+
+    var close_menu = document.getElementById("Menus");
+    close_menu.classList.add('hide-m');
+    var close_order = document.getElementById('cart_grabber');
+    close_order.classList.add('hide_cart');  
+}
+
+function open_menu(){
+    var open_menu = document.getElementById("Menus");
+    open_menu.classList.toggle("hide-m");
+}
+
+function show_items(){
+    var open_items = document.getElementById('M1_items');
+    open_items.classList.toggle('hide-i');
+    // var items = [];
+}
+
+//cart functions
+function show_cart(){
+    var cart_show =document.getElementById('cart_grabber');
+    var close_order_win = document.getElementById('order-items-r');
+    var close_menu_win = document.getElementById('Menus');
+    cart_show.classList.toggle('hide_cart');
+    close_order_win.classList.add('hide-r');
+    close_menu_win.classList.add('hide-m');
+} 
